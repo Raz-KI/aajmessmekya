@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+    <div class="container my-3">
+        <h1>December</h1>
+       
+        {% if allItems|length==0 %}
+        <div class="alert alert-dark" role="alert">
+          Menu Items Will be shown here
+        </div>
+          {% else %}
+          <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Breakfast</th>
+                <th scope="col">Dinner</th>
+    
+                </tr>
+            </thead>
+            <tbody>
+        {% for todo in allItems %}
+        <tr>
+          <!-- <th scope="row">1</th> -->
+          <td>{{todo.date}}</td>
+          <td>{{todo.breakfast}}</td>
+          <td>{{todo.dinner}}</td>
+          <td>
+            <a href="/delete/{{todo.date}}" type="button" class="btn btn-success btn-sm mx-1">Delete</button>
+              </td>
+          
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table></div>
+          
+          {% endif  %}
+    
+    
+</body>
+    
+{% endblock content %}

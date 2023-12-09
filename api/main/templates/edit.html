@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        
+        <h2>Add An Item</h2>
+        <form method = "POST" enctype="multipart/form-data">
+        <!-- <form action="/" method="POST"> -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Date</label>
+          <input type="text" class="form-control" name="date" id="title" aria-describedby="emailHelp">
+          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+        <div class="mb-3">
+          <label for="desc" class="form-label">Breakfast</label>
+          <input type="text" class="form-control" name="breakfast" id="desc">
+        </div>
+        <div class="mb-3">
+          <label for="desc" class="form-label">Dinner</label>
+          <input type="text" class="form-control" name="dinner" id="desc">
+        </div>
+        <!-- <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div> -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form></div>
+
+
+      <div class="container my-3">
+        <h1>Your Todos</h1>
+       
+        {% if allItems|length==0 %}
+        <div class="alert alert-dark" role="alert">
+          Your Todos Will be shown here
+        </div>
+          {% else %}
+          <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Breakfast</th>
+                <th scope="col">Dinner</th>
+    
+                </tr>
+            </thead>
+            <tbody>
+        {% for todo in allItems %}
+        <tr>
+          <!-- <th scope="row">1</th> -->
+          <td>{{todo.date}}</td>
+          <td>{{todo.breakfast}}</td>
+          <td>{{todo.dinner}}</td>
+          <td>
+            <a href="/delete/{{todo.date}}" type="button" class="btn btn-success btn-sm mx-1">Delete</button>
+              </td>
+          
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table></div>
+          
+          {% endif  %}
+    
+    
+</body>
+{%endblock%}
